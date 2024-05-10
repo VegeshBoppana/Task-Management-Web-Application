@@ -15,9 +15,9 @@ app.post('/', (req, res) => {
     .catch(err => res.json(err))
 })
 
-app.get('/details', (req, res) => {
-    const {name} = req.body;
-    userModel.findOne(name)
+app.get('/login', (req, res) => {
+    const {email} = req.body;
+    userModel.findOne(email)
     .then(details => {
         res.json(details);
     })
@@ -25,6 +25,26 @@ app.get('/details', (req, res) => {
         res.json(err);
     })
 })
+
+
+
+
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    // Find user by email and password
+    userModel.findOne({ email, password })
+    .then(user => {
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+        res.json(user);
+    })
+    .catch(err => res.status(500).json({ message: 'Internal server error' }));
+});
+
+
+
 
 app.listen(3011, ()=>{
     console.log("Server is running");

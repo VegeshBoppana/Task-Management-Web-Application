@@ -9,7 +9,11 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('http://localhost:3011/login', { email, password })
-            .then(result => console.log(result.data))
+            .then(result => {
+                console.log(result.data);
+                // Redirect to the login page after successful form submission
+                window.location.href = 'kanban';
+            })
             .catch(err => console.log(err));
     }
 
@@ -39,7 +43,7 @@ function Login() {
                             Login
                         </button>
                     </form>
-                    <Link to="/signup">Don't have an account? Sign Up</Link>
+                    <Link to="/">Don't have an account? Sign Up</Link>
                 </div>
             </div>
         </div>

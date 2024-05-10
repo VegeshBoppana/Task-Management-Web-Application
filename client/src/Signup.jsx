@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Form(){
     const [name, setName] = useState('');
@@ -9,9 +10,12 @@ function Form(){
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('http://localhost:3011/', {name, email, password})
-        .then(result => console.log(result.data))
+        .then(result => {
+            console.log(result.data);
+            // Redirect to the login page after successful form submission
+            window.location.href = 'login'
+        })
         .catch(err => console.log(err));
-        
     }
 
     return (
@@ -43,14 +47,13 @@ function Form(){
                             </div>
                             <input type="password" placeholder="Enter Password" autoComplete='off'
                             name="password" className='form-control rounded-0' onChange={(e) => setPassword(e.target.value)}/>                        
-                        </div>
-
-                        
-                                                
+                        </div>                    
                         <button type="submit" className="btn btn-success border-none rounded-2 w-100">
-                            Login
+                            Register
                         </button>
-                    </form>                    
+                        
+                    </form> 
+                    <Link to="/login">Login</Link>    
                 </div>
             </div>
         </div>
