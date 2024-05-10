@@ -8,9 +8,10 @@ function Form(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3011/', {name, email, phoneNumber})
+        axios.post('http://localhost:3011/', {name, email, password})
         .then(result => console.log(result.data))
         .catch(err => console.log(err));
+        
     }
 
     return (

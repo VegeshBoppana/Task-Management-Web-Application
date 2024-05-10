@@ -7,7 +7,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-mongoose.connect("mongodb://localhost:27017/EndLab");
+mongoose.connect("mongodb+srv://vegesh:87456123@userdetails.sjfstkg.mongodb.net/UserDetails");
 
 app.post('/', (req, res) => {
     userModel.create(req.body)
